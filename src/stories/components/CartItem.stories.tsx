@@ -20,7 +20,7 @@ const Template: StoryFn = () => {
     },
   };
 
-  return <CartItem {...item} />;
+  return <CartItem item={item} />;
 };
 
 export const CartItemSample = Template.bind({});
