@@ -14,7 +14,7 @@ const OrderDetail = () => {
       <Title>주문 상세 정보</Title>
       {orderItems?.map((orderItem) => (
         <ListBox key={orderItem.product.id}>
-          <OrderProduct {...orderItem} />
+          <OrderProduct order={orderItem} />
           <Details>
             <PriceBox>개당 가격: {orderItem.product.price.toLocaleString()}원</PriceBox>
             <PriceBox>수량: {orderItem.quantity}</PriceBox>

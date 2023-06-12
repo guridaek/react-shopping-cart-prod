@@ -68,7 +68,7 @@ const TitleContainer = styled.section`
   }
 `;
 
-const Title = styled.p`
+const Title = styled.h2`
   color: white;
   font-weight: 900;
   font-size: 2rem;

@@ -1,13 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 
-interface CounterProps extends React.HTMLProps<HTMLInputElement> {
+interface Props extends React.HTMLProps<HTMLInputElement> {
   value: string;
   setValue: (newValue: string) => void;
   lowerBound?: number;
 }
 
-const Counter = (props: CounterProps) => {
+const Counter = (props: Props) => {
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (!(e.target instanceof HTMLInputElement) || e.key !== "Enter") return;
     e.target.blur();

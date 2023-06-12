@@ -6,7 +6,11 @@ import { cartSelector } from "recoil/cart";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { serverSelectState } from "recoil/server";
 
-const Item = (item: Product) => {
+interface Props {
+  item: Product
+}
+
+const Item = ({item}: Props) => {
   const selectedServer = useRecoilValue(serverSelectState);
   const [cartItem, setCartItem] = useRecoilState(cartSelector(item.id));
 
@@ -29,14 +33,14 @@ const Item = (item: Product) => {
       <NameBox>{item.name}</NameBox>
       <PriceBox>{item.price.toLocaleString()}원</PriceBox>
       <IconContainer>
-        {!cartItem ? (
+        {cartItem ? (
+          <QuantityCounter itemId={item.id} />
+        ) : (
           <img
             src={process.env.PUBLIC_URL + "/assets/cart-gray-icon.svg"}
             alt={"카트"}
             onClick={handleCartClicked}
           />
-        ) : (
-          <QuantityCounter itemId={item.id} />
         )}
       </IconContainer>
     </Wrapper>

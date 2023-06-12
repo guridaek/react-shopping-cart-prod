@@ -2,12 +2,12 @@ import React from "react";
 import { useQuantity } from "hooks/useQuantity";
 import Counter from "components/common/Counter";
 
-interface QuantityCounterProps {
+interface Props {
   itemId: number;
   lowerBound?: number;
 }
 
-const QuantityCounter = ({ itemId, lowerBound }: QuantityCounterProps) => {
+const QuantityCounter = ({ itemId, lowerBound }: Props) => {
   const { quantity, changeQuantity, handleQuantityChanged, handleQuantityBlurred } =
     useQuantity(itemId);
 

@@ -4,12 +4,12 @@ import OrderProduct from "./OrderProduct";
 import { useNavigate } from "react-router-dom";
 import { ROUTER_PATH } from "router";
 
-interface OrderListItemProps {
+interface Props {
   orderId: number;
   items: OrderItem[];
 }
 
-const OrderListItem = ({ orderId, items }: OrderListItemProps) => {
+const OrderListItem = ({ orderId, items }: Props) => {
   const navigate = useNavigate();
 
   const goToOrderDetail = () => {
@@ -24,7 +24,7 @@ const OrderListItem = ({ orderId, items }: OrderListItemProps) => {
       </TitleContainer>
       <ListBox>
         {items.map((item) => (
-          <OrderProduct key={item.product.id} {...item} />
+          <OrderProduct key={item.product.id} order={item} />
         ))}
       </ListBox>
     </Wrapper>

@@ -2,7 +2,11 @@ import { OrderItem } from "api/orders";
 import React from "react";
 import { styled } from "styled-components";
 
-const OrderProduct = (order: OrderItem) => {
+interface Props {
+  order: OrderItem;
+}
+
+const OrderProduct = ({ order }: Props) => {
   return (
     <Wrapper>
       <ImgBox src={order.product.imageUrl} alt={`${order.product.name} 상품 이미지`} />

@@ -5,12 +5,12 @@ import { serverSelectState } from "recoil/server";
 import { ROUTER_PATH } from "router";
 import { styled } from "styled-components";
 
-interface FallbackProps {
+interface Props {
   error: Error;
   resetErrorBoundary: () => void;
 }
 
-const Fallback = ({ error, resetErrorBoundary }: FallbackProps) => {
+const Fallback = ({ error, resetErrorBoundary }: Props) => {
   const navigate = useNavigate();
   const resetServer = useResetRecoilState(serverSelectState);
 

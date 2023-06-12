@@ -9,7 +9,11 @@ import { serverSelectState } from "recoil/server";
 import { useCoupon } from "hooks/useCoupon";
 import { getDiscountedPriceByProductId } from "recoil/coupon";
 
-const CartItem = (item: CartProduct) => {
+interface Props {
+  item: CartProduct;
+}
+
+const CartItem = ({ item }: Props) => {
   const setProduct = useSetRecoilState(cartSelector(item.product.id));
   const selectedServer = useRecoilValue(serverSelectState);
   const { couponList, changeCoupon } = useCoupon(item.product.id);

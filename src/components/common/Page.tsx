@@ -1,7 +1,11 @@
 import { ReactNode } from "react";
 import styled from "styled-components";
 
-const Page = ({ children }: { children: ReactNode }) => {
+interface Props {
+  children: ReactNode;
+}
+
+const Page = ({ children }: Props) => {
   return <Wrapper>{children}</Wrapper>;
 };
 
