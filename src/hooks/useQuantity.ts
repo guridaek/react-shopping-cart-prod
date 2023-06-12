@@ -39,7 +39,7 @@ export const useQuantity = (productId: number) => {
     setQuantity(e.target.value);
   };
 
-  const handleQuantityBlured = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleQuantityBlurred = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (quantity === "" || Number(quantity) < MIN_QUANTITY)
       e.target.value = MIN_QUANTITY.toString();
     if (Number(quantity) > MAX_QUANTITY) e.target.value = MAX_QUANTITY.toString();
@@ -51,6 +51,6 @@ export const useQuantity = (productId: number) => {
     quantity,
     changeQuantity,
     handleQuantityChanged,
-    handleQuantityBlured,
+    handleQuantityBlurred,
   } as const;
 };

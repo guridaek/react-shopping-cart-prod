@@ -8,7 +8,7 @@ interface QuantityCounterProps {
 }
 
 const QuantityCounter = ({ itemId, lowerBound }: QuantityCounterProps) => {
-  const { quantity, changeQuantity, handleQuantityChanged, handleQuantityBlured } =
+  const { quantity, changeQuantity, handleQuantityChanged, handleQuantityBlurred } =
     useQuantity(itemId);
 
   const handleCountInputKey = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -23,7 +23,7 @@ const QuantityCounter = ({ itemId, lowerBound }: QuantityCounterProps) => {
         setValue={changeQuantity}
         onChange={handleQuantityChanged}
         onKeyDown={handleCountInputKey}
-        onBlur={handleQuantityBlured}
+        onBlur={handleQuantityBlurred}
         placeholder="수량"
         lowerBound={lowerBound}
       />

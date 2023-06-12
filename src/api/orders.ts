@@ -19,13 +19,13 @@ export interface OrderItem {
   quantity: number;
 }
 
-export interface PostOrderitem extends CartItem {
+export interface PostOrderItem extends CartItem {
   coupons: Coupon[];
 }
 
 export interface PostOrder {
   deliveryFee: number;
-  orderItems: PostOrderitem[];
+  orderItems: PostOrderItem[];
 }
 
 export const getOrders = async (serverId: ServerId): Promise<Order[]> => {

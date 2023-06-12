@@ -12,7 +12,7 @@ const ServerSelector = () => {
   const [serverState, setServerState] = useRecoilState(serverSelectState);
   const { reloadCartList, reloadOrderList } = useReloadFromServer();
 
-  const chagneServer = (e: ChangeEvent<HTMLInputElement>) => {
+  const changeServer = (e: ChangeEvent<HTMLInputElement>) => {
     setServerState(e.target.id as ServerId);
     navigate(ROUTER_PATH.Main);
   };
@@ -37,7 +37,7 @@ const ServerSelector = () => {
             name="server"
             id={id}
             checked={serverState === id}
-            onChange={chagneServer}
+            onChange={changeServer}
           />
           {name}
         </InputBox>

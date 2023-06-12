@@ -7,13 +7,13 @@ import { CartProduct } from "types/domain";
 import { removeCartItem } from "api/cartItems";
 import { serverSelectState } from "recoil/server";
 import { useCoupon } from "hooks/useCoupon";
-import { getDisconutedPriceByProductId } from "recoil/coupon";
+import { getDiscountedPriceByProductId } from "recoil/coupon";
 
 const CartItem = (item: CartProduct) => {
   const setProduct = useSetRecoilState(cartSelector(item.product.id));
   const selectedServer = useRecoilValue(serverSelectState);
   const { couponList, changeCoupon } = useCoupon(item.product.id);
-  const discountedPrice = useRecoilValue(getDisconutedPriceByProductId(item.product.id));
+  const discountedPrice = useRecoilValue(getDiscountedPriceByProductId(item.product.id));
 
   const handleCheckbox = (e: React.ChangeEvent<HTMLInputElement>) => {
     setProduct({

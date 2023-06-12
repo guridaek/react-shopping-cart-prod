@@ -22,8 +22,8 @@ export const couponListState = atom<UsableCoupon[]>({
   default: getCouponList,
 });
 
-export const getDisconutedPriceByProductId = selectorFamily<number | null, number>({
-  key: "getDisconutedPriceByProductId",
+export const getDiscountedPriceByProductId = selectorFamily<number | null, number>({
+  key: "getDiscountedPriceByProductId",
   get:
     (productId) =>
     ({ get }) => {
