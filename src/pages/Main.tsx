@@ -10,9 +10,7 @@ import Fallback from "./Fallback";
 const Main = () => {
   return (
     <ErrorBoundary FallbackComponent={Fallback}>
-      <React.Suspense
-        fallback={<Skeleton {...{ background: "#333333", width: "100%", height: "70px" }} />}
-      >
+      <React.Suspense fallback={<Skeleton background={"#333333"} width={"100%"} height={"70px"} />}>
         <Header />
       </React.Suspense>
       <Page>

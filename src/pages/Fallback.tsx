@@ -22,7 +22,7 @@ const Fallback = ({ error, resetErrorBoundary }: FallbackProps) => {
 
   return (
     <>
-      <Skeleton {...{ background: "#333333", width: "100%", height: "70px" }} />
+      <Skeleton background={"#333333"} width={"100%"} height={"70px"} />
       <ErrorBox>
         <h2>Sorry</h2>
         <p>{error.message ?? "알수없는 오류"}</p>
