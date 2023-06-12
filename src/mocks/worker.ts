@@ -1,8 +1,8 @@
 import { rest } from "msw";
 import products from "./data/products.json";
 import coupons from "./data/coupons.json";
-import orders from "./data/orders.json";
 import { getCart, addCartItem, setCartItem } from "mocks/server/cart";
+import { getOrders, postOrder } from "./server/orders";
 
 export const handlers = [
   rest.get("msw/products", (req, res, ctx) => {
@@ -59,12 +59,18 @@ export const handlers = [
 
   rest.get("msw/orders", (req, res, ctx) => {
     return res(
-      ctx.delay(500),
+      ctx.delay(400),
       ctx.status(200),
       ctx.set("Content-Type", "application/json"),
-      ctx.json(orders)
+      ctx.json(getOrders())
     );
   }),
 
-  rest.post("msw/orders", (req, res, ctx) => res(ctx.delay(300), ctx.status(204))),
+  rest.post("msw/orders", async (req, res, ctx) => {
+    const orderItems = await req.json();
+
+    postOrder(orderItems);
+
+    return res(ctx.delay(200), ctx.status(204));
+  }),
 ];

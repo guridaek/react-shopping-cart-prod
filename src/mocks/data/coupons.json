@@ -1,7 +1,7 @@
 [
   {
     "couponId": 1,
-    "name": "오픈 기념 쿠폰 (10%)",
+    "name": "오픈 기념 쿠폰",
     "discount": {
       "type": "rate",
       "amount": 10
@@ -9,7 +9,7 @@
   },
   {
     "couponId": 2,
-    "name": "브론즈 쿠폰 (1000원)",
+    "name": "브론즈 쿠폰",
     "discount": {
       "type": "price",
       "amount": 1000
@@ -17,7 +17,7 @@
   },
   {
     "couponId": 3,
-    "name": "실버 쿠폰 (3000원)",
+    "name": "실버 쿠폰",
     "discount": {
       "type": "price",
       "amount": 3000
@@ -25,7 +25,7 @@
   },
   {
     "couponId": 4,
-    "name": "골드 쿠폰 (15%)",
+    "name": "골드 쿠폰",
     "discount": {
       "type": "rate",
       "amount": 15

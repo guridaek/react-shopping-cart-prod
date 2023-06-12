@@ -1,25 +1,11 @@
+import { CartItem } from "api/cartItems";
 import products from "mocks/data/products.json";
 
-const LOCAL_STORAGE_KEY = "server";
+const CART_LOCAL_STORAGE_KEY = "cart";
 
-type Cart = CartItem[];
-
-interface CartItem {
-  id: number;
-  quantity: number;
-  product: Product;
-}
-
-interface Product {
-  id: number;
-  price: number;
-  name: string;
-  imageUrl: string;
-}
-
-export const getCart = (): Cart => {
+export const getCart = (): CartItem[] => {
   try {
-    const item = localStorage.getItem(LOCAL_STORAGE_KEY);
+    const item = localStorage.getItem(CART_LOCAL_STORAGE_KEY);
 
     return item ? JSON.parse(item) : [];
   } catch {
@@ -37,7 +23,7 @@ export const addCartItem = (id: number) => {
 
   cart.push({ id: cartItemId, quantity: 1, product: product });
 
-  localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(cart));
+  localStorage.setItem(CART_LOCAL_STORAGE_KEY, JSON.stringify(cart));
 
   return cartItemId;
 };
@@ -51,5 +37,9 @@ export const setCartItem = (id: number, quantity: number) => {
   if (quantity > 0) cart[itemIndex] = { ...cart[itemIndex], quantity: quantity };
   if (quantity === 0) cart.splice(itemIndex, 1);
 
-  localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(cart));
+  localStorage.setItem(CART_LOCAL_STORAGE_KEY, JSON.stringify(cart));
+};
+
+export const clearCart = () => {
+  localStorage.removeItem(CART_LOCAL_STORAGE_KEY);
 };
