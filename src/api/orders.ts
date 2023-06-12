@@ -1,5 +1,5 @@
 import { ServerId } from "recoil/server";
-import { SERVER_LIST, USER_TOKEN } from "./constants";
+import { SERVER_LIST } from "./constants";
 import { Product } from "./products";
 import { Coupon } from "./coupons";
 import { CartItem } from "./cartItems";
@@ -32,7 +32,7 @@ export const getOrders = async (serverId: ServerId): Promise<Order[]> => {
   const response = await fetch(`${SERVER_LIST[serverId]}/orders`, {
     method: "GET",
     headers: {
-      Authorization: `Basic ${USER_TOKEN}`,
+      Authorization: `Basic ${process.env.REACT_APP_USER_TOKEN}`,
     },
   });
 
@@ -48,7 +48,7 @@ export const postOrder = async (serverId: ServerId, order: PostOrder) => {
   const response = await fetch(`${SERVER_LIST[serverId]}/orders`, {
     method: "POST",
     headers: {
-      Authorization: `Basic ${USER_TOKEN}`,
+      Authorization: `Basic ${process.env.REACT_APP_USER_TOKEN}`,
       "Content-Type": "application/json",
     },
     body: JSON.stringify(order),

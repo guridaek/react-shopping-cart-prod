@@ -1,5 +1,5 @@
 import { ServerId } from "recoil/server";
-import { SERVER_LIST, USER_TOKEN } from "./constants";
+import { SERVER_LIST } from "./constants";
 
 export interface Coupon {
   couponId: number;
@@ -14,7 +14,7 @@ export const getCoupons = async (serverId: ServerId): Promise<Coupon[]> => {
   const response = await fetch(`${SERVER_LIST[serverId]}/coupons`, {
     method: "GET",
     headers: {
-      Authorization: `Basic ${USER_TOKEN}`,
+      Authorization: `Basic ${process.env.REACT_APP_USER_TOKEN}`,
     },
   });
 

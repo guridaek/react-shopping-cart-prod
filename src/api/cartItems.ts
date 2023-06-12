@@ -1,6 +1,6 @@
 import { ServerId } from "recoil/server";
 import { Product } from "./products";
-import { SERVER_LIST, USER_TOKEN } from "./constants";
+import { SERVER_LIST } from "./constants";
 
 export interface CartItem {
   id: number;
@@ -12,7 +12,7 @@ export const getCartItems = async (serverId: ServerId): Promise<CartItem[]> => {
   const response = await fetch(`${SERVER_LIST[serverId]}/cart-items`, {
     method: "GET",
     headers: {
-      Authorization: `Basic ${USER_TOKEN}`,
+      Authorization: `Basic ${process.env.REACT_APP_USER_TOKEN}`,
     },
   });
 
@@ -28,7 +28,7 @@ export const addCartItem = async (serverId: ServerId, productId: number) => {
   const response = await fetch(`${SERVER_LIST[serverId]}/cart-items`, {
     method: "POST",
     headers: {
-      Authorization: `Basic ${USER_TOKEN}`,
+      Authorization: `Basic ${process.env.REACT_APP_USER_TOKEN}`,
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ productId: productId }),
@@ -47,7 +47,7 @@ export const changeItemQuantity = async (
   const response = await fetch(`${SERVER_LIST[serverId]}/cart-items/${cartItemId}`, {
     method: "PATCH",
     headers: {
-      Authorization: `Basic ${USER_TOKEN}`,
+      Authorization: `Basic ${process.env.REACT_APP_USER_TOKEN}`,
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ quantity: quantity }),
@@ -60,7 +60,7 @@ export const removeCartItem = async (serverId: ServerId, cartItemId: number) => 
   const response = await fetch(`${SERVER_LIST[serverId]}/cart-items/${cartItemId}`, {
     method: "DELETE",
     headers: {
-      Authorization: `Basic ${USER_TOKEN}`,
+      Authorization: `Basic ${process.env.REACT_APP_USER_TOKEN}`,
     },
   });
 
