@@ -1,5 +1,7 @@
 import Skeleton from "components/common/Skeleton";
 import { useNavigate } from "react-router-dom";
+import { useResetRecoilState } from "recoil";
+import { serverSelectState } from "recoil/server";
 import { ROUTER_PATH } from "router";
 import { styled } from "styled-components";
 
@@ -10,8 +12,11 @@ interface FallbackProps {
 
 const Fallback = ({ error, resetErrorBoundary }: FallbackProps) => {
   const navigate = useNavigate();
+  const resetServer = useResetRecoilState(serverSelectState);
 
   const goToMain = () => {
+    resetServer();
+    resetErrorBoundary();
     navigate(ROUTER_PATH.Main);
   };
 
@@ -20,7 +25,7 @@ const Fallback = ({ error, resetErrorBoundary }: FallbackProps) => {
       <Skeleton {...{ background: "#333333", width: "100%", height: "70px" }} />
       <ErrorBox>
         <h2>Sorry</h2>
-        <p>{error.message}</p>
+        <p>{error.message ?? "알수없는 오류"}</p>
         <HomeButton onClick={goToMain}>홈으로</HomeButton>
       </ErrorBox>
     </>
