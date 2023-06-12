@@ -36,7 +36,7 @@ export const getDisconutedPriceByProductId = selectorFamily<number | null, numbe
       const amount = coupon.discount.amount;
 
       if (coupon.discount.type === "price") return price < amount ? 0 : price - amount;
-      if (coupon.discount.type === "rate") return price * ((100 - amount) / 100);
+      if (coupon.discount.type === "rate") return Math.floor(price * ((100 - amount) / 100));
 
       return null;
     },
@@ -53,7 +53,8 @@ export const totalCouponDiscount = selector({
 
         const price = product.product.price * product.quantity;
 
-        if (coupon.discount.type === "rate") return sum + price * (coupon.discount.amount / 100);
+        if (coupon.discount.type === "rate")
+          return sum + Math.floor(price * (coupon.discount.amount / 100));
         if (coupon.discount.type === "price")
           return price < coupon.discount.amount ? sum + price : sum + coupon.discount.amount;
         return sum;
