@@ -23,43 +23,25 @@ const ServerSelector = () => {
   }, [serverState]);
 
   const serverList: { [key in ServerId]: string } = {
-    "power-server": "파워",
+    msw: "MSW",
     "ttaengchil-server": "땡칠",
     "ori-server": "오리",
   };
 
   return (
     <Wrapper>
-      <InputBox>
-        <Input
-          type="radio"
-          name="server"
-          id={Object.keys(serverList)[0]}
-          checked={serverState === Object.keys(serverList)[0]}
-          onChange={chagneServer}
-        />
-        {Object.values(serverList)[0]}
-      </InputBox>
-      <InputBox>
-        <Input
-          type="radio"
-          name="server"
-          id={Object.keys(serverList)[1]}
-          checked={serverState === Object.keys(serverList)[1]}
-          onChange={chagneServer}
-        />
-        {Object.values(serverList)[1]}
-      </InputBox>
-      <InputBox>
-        <Input
-          type="radio"
-          name="server"
-          id={Object.keys(serverList)[2]}
-          checked={serverState === Object.keys(serverList)[2]}
-          onChange={chagneServer}
-        />
-        {Object.values(serverList)[2]}
-      </InputBox>
+      {Object.entries(serverList).map(([id, name]) => (
+        <InputBox key={id}>
+          <Input
+            type="radio"
+            name="server"
+            id={id}
+            checked={serverState === id}
+            onChange={chagneServer}
+          />
+          {name}
+        </InputBox>
+      ))}
     </Wrapper>
   );
 };
