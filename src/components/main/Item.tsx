@@ -7,10 +7,10 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import { serverSelectState } from "recoil/server";
 
 interface Props {
-  item: Product
+  item: Product;
 }
 
-const Item = ({item}: Props) => {
+const Item = ({ item }: Props) => {
   const selectedServer = useRecoilValue(serverSelectState);
   const [cartItem, setCartItem] = useRecoilState(cartSelector(item.id));
 

@@ -3,7 +3,7 @@ import { styled } from "styled-components";
 const LoadingSpinner = () => {
   return (
     <Wrapper>
-      <Spinner>Loding...</Spinner>
+      <Spinner>Loading...</Spinner>
     </Wrapper>
   );
 };
