@@ -1,6 +1,7 @@
 import { postOrder } from "api/orders";
 import { SHIPPING_FEE } from "constants/cartProduct";
 import { useReloadFromServer } from "hooks/useReloadFromServer";
+import { useToast } from "hooks/useToast";
 import { useNavigate } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { cartListState, cartTotalPrice } from "recoil/cart";
@@ -17,6 +18,7 @@ const PurchaseOrder = () => {
   const cartList = useRecoilValue(cartListState);
   const couponList = useRecoilValue(couponListState);
   const { reloadOrderList } = useReloadFromServer();
+  const { showToast } = useToast();
 
   const requestOrder = async () => {
     postOrder(selectedServer, {
@@ -30,6 +32,7 @@ const PurchaseOrder = () => {
       .then(() => {
         reloadOrderList();
         navigate(ROUTER_PATH.OrderList);
+        showToast("주문이 완료되었습니다!");
       })
       .catch((err) => {
         alert(

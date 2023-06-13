@@ -5,6 +5,7 @@ import { addCartItem } from "api/cartItems";
 import { cartSelector } from "recoil/cart";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { serverSelectState } from "recoil/server";
+import { useToast } from "hooks/useToast";
 
 interface Props {
   item: Product;
@@ -13,6 +14,7 @@ interface Props {
 const Item = ({ item }: Props) => {
   const selectedServer = useRecoilValue(serverSelectState);
   const [cartItem, setCartItem] = useRecoilState(cartSelector(item.id));
+  const { showToast } = useToast();
 
   const handleCartClicked = async () => {
     const cartItemId = await addCartItem(selectedServer, item.id);
@@ -23,6 +25,7 @@ const Item = ({ item }: Props) => {
     }
 
     setCartItem({ id: Number(cartItemId), quantity: 1, isChecked: true, product: item });
+    showToast("상품을 추가했습니다!");
   };
 
   return (
