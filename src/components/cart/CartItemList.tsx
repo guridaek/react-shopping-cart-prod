@@ -20,6 +20,10 @@ const CartItemList = () => {
     !e.currentTarget.checked && setAllCheckbox(false);
   };
 
+  const confirmRemoveItems = () => {
+    window.confirm("선택된 상품을 모두 제거하시겠습니까?") && removeCheckedItem();
+  };
+
   return (
     <Wrapper>
       <SelectorContainer>
@@ -27,7 +31,7 @@ const CartItemList = () => {
         <CountBox>
           {checkedCount} / {cartList.length}
         </CountBox>
-        <button onClick={removeCheckedItem}>선택삭제</button>
+        <button onClick={confirmRemoveItems}>선택삭제</button>
       </SelectorContainer>
       <ListBox>
         {cartList.map((item) => (

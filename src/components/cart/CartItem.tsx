@@ -26,6 +26,10 @@ const CartItem = ({ item }: Props) => {
     });
   };
 
+  const confirmRemoveItem = () => {
+    window.confirm("선택한 상품을 제거하시겠습니까?") && removeItem();
+  };
+
   const removeItem = async () => {
     removeCartItem(selectedServer, item.id)
       .then(() => {
@@ -45,7 +49,7 @@ const CartItem = ({ item }: Props) => {
       <input type="checkbox" value={item.id} checked={item.isChecked} onChange={handleCheckbox} />
       <img src={item.product.imageUrl} alt={`${item.product.name} 상품 이미지`} />
       <NameBox>{item.product.name}</NameBox>
-      <ButtonBox onClick={removeItem}>🗑️</ButtonBox>
+      <ButtonBox onClick={confirmRemoveItem}>🗑️</ButtonBox>
       <PriceContainer>
         <p>{(item.product.price * item.quantity).toLocaleString()}원</p>
         {discountedPrice !== null && <p>{discountedPrice.toLocaleString()}원</p>}
