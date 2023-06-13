@@ -16,9 +16,11 @@ export const getCartItems = async (serverId: ServerId): Promise<CartItem[]> => {
     },
   });
 
-  const data = await response.json();
+  if (!response.ok) throw new Error(CART_ERROR_MESSAGE.GET);
 
-  if (!response.ok || !data.length) throw new Error(CART_ERROR_MESSAGE.GET);
+  const data = await response.json().catch(() => {
+    throw new Error(CART_ERROR_MESSAGE.GET);
+  });
 
   return data;
 };
