@@ -5,6 +5,7 @@ import { MAX_QUANTITY, MIN_QUANTITY } from "constants/cartProduct";
 import { CartProduct } from "types/domain";
 import { changeItemQuantity, removeCartItem } from "api/cartItems";
 import { serverSelectState } from "recoil/server";
+import { CART_ERROR_MESSAGE } from "constants/api";
 
 export const useQuantity = (productId: number) => {
   const selectedServer = useRecoilValue(serverSelectState);
@@ -17,17 +18,22 @@ export const useQuantity = (productId: number) => {
     if (Number(newQuantity) > MAX_QUANTITY || Number(newQuantity) < MIN_QUANTITY) return;
 
     if (!cartItem) {
-      alert(`서버와의 통신이 원활하지 않습니다. 잠시후 다시 시도해주세요.`);
+      alert(CART_ERROR_MESSAGE.PATCH.CLIENT);
+
       return;
     }
 
-    const result =
+    try {
       Number(newQuantity) > MIN_QUANTITY
         ? await changeItemQuantity(selectedServer, cartItem.id, Number(newQuantity))
         : await removeCartItem(selectedServer, cartItem.id);
+    } catch (err) {
+      alert(
+        err instanceof Error
+          ? err.message
+          : "서버와의 통신이 원활하지 않습니다. 잠시후 다시 시도해주세요."
+      );
 
-    if (!result) {
-      alert(`서버와의 통신이 원활하지 않습니다. 잠시후 다시 시도해주세요.`);
       return;
     }
 

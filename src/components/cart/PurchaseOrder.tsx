@@ -19,22 +19,25 @@ const PurchaseOrder = () => {
   const { reloadOrderList } = useReloadFromServer();
 
   const requestOrder = async () => {
-    const result = await postOrder(selectedServer, {
+    postOrder(selectedServer, {
       deliveryFee: SHIPPING_FEE,
       orderItems: cartList.map((item) => {
         const coupon = couponList.find((coupon) => coupon.productId === item.product.id);
 
         return { ...item, coupons: coupon ? [coupon] : [] };
       }),
-    });
-
-    if (!result) {
-      alert("주문에 실패했습니다. 잠시 후 다시 시도해주세요.");
-      return;
-    }
-
-    reloadOrderList();
-    navigate(ROUTER_PATH.OrderList);
+    })
+      .then(() => {
+        reloadOrderList();
+        navigate(ROUTER_PATH.OrderList);
+      })
+      .catch((err) => {
+        alert(
+          err instanceof Error
+            ? err.message
+            : "서버와의 통신이 원활하지 않습니다. 잠시후 다시 시도해주세요."
+        );
+      });
   };
 
   return (

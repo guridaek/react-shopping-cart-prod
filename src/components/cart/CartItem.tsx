@@ -27,14 +27,17 @@ const CartItem = ({ item }: Props) => {
   };
 
   const removeItem = async () => {
-    const result = await removeCartItem(selectedServer, item.id);
-
-    if (!result) {
-      alert("서버와의 통신이 원활하지 않습니다. 잠시후 다시 시도해주세요.");
-      return;
-    }
-
-    setProduct(null);
+    removeCartItem(selectedServer, item.id)
+      .then(() => {
+        setProduct(null);
+      })
+      .catch((err) => {
+        alert(
+          err instanceof Error
+            ? err.message
+            : "서버와의 통신이 원활하지 않습니다. 잠시후 다시 시도해주세요."
+        );
+      });
   };
 
   return (

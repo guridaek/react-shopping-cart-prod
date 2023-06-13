@@ -1,5 +1,5 @@
 import { ServerId } from "recoil/server";
-import { SERVER_LIST } from "./constants";
+import { COUPON_ERROR_MESSAGE, SERVER_LIST } from "constants/api";
 
 export interface Coupon {
   couponId: number;
@@ -18,10 +18,11 @@ export const getCoupons = async (serverId: ServerId): Promise<Coupon[]> => {
     },
   });
 
-  const data = await response.json();
+  if (!response.ok) throw new Error(COUPON_ERROR_MESSAGE.GET);
 
-  if (!response.ok)
-    throw new Error(data.message ?? "오류가 발생했습니다. 잠시 후 다시 시도해주세요.");
+  const data = await response.json().catch(() => {
+    throw new Error(COUPON_ERROR_MESSAGE.GET);
+  });
 
   return data;
 };

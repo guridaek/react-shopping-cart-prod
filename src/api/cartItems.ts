@@ -1,6 +1,6 @@
 import { ServerId } from "recoil/server";
 import { Product } from "./products";
-import { SERVER_LIST } from "./constants";
+import { CART_ERROR_MESSAGE, SERVER_LIST } from "constants/api";
 
 export interface CartItem {
   id: number;
@@ -18,8 +18,7 @@ export const getCartItems = async (serverId: ServerId): Promise<CartItem[]> => {
 
   const data = await response.json();
 
-  if (!response.ok)
-    throw new Error(data.message ?? "오류가 발생했습니다. 잠시 후 다시 시도해주세요.");
+  if (!response.ok || !data.length) throw new Error(CART_ERROR_MESSAGE.GET);
 
   return data;
 };
@@ -36,7 +35,14 @@ export const addCartItem = async (serverId: ServerId, productId: number) => {
 
   const cartItemId = response.headers.get("Location")?.split("/")[2];
 
-  return response.ok && cartItemId;
+  if (!response.ok || !cartItemId)
+    throw new Error(
+      response.status.toString()[0] === "5"
+        ? CART_ERROR_MESSAGE.POST.SERVER
+        : CART_ERROR_MESSAGE.POST.CLIENT
+    );
+
+  return cartItemId;
 };
 
 export const changeItemQuantity = async (
@@ -53,7 +59,12 @@ export const changeItemQuantity = async (
     body: JSON.stringify({ quantity: quantity }),
   });
 
-  return response.ok;
+  if (!response.ok)
+    throw new Error(
+      response.status.toString()[0] === "5"
+        ? CART_ERROR_MESSAGE.PATCH.SERVER
+        : CART_ERROR_MESSAGE.POST.CLIENT
+    );
 };
 
 export const removeCartItem = async (serverId: ServerId, cartItemId: number) => {
@@ -64,5 +75,10 @@ export const removeCartItem = async (serverId: ServerId, cartItemId: number) => 
     },
   });
 
-  return response.ok;
+  if (!response.ok)
+    throw new Error(
+      response.status.toString()[0] === "5"
+        ? CART_ERROR_MESSAGE.DELETE.SERVER
+        : CART_ERROR_MESSAGE.DELETE.CLIENT
+    );
 };

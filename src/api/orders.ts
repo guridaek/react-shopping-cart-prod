@@ -1,5 +1,5 @@
 import { ServerId } from "recoil/server";
-import { SERVER_LIST } from "./constants";
+import { ORDER_ERROR_MESSAGE, SERVER_LIST } from "constants/api";
 import { Product } from "./products";
 import { Coupon } from "./coupons";
 import { CartItem } from "./cartItems";
@@ -36,10 +36,11 @@ export const getOrders = async (serverId: ServerId): Promise<Order[]> => {
     },
   });
 
-  const data = await response.json();
+  if (!response.ok) throw new Error(ORDER_ERROR_MESSAGE.GET);
 
-  if (!response.ok)
-    throw new Error(data.message ?? "오류가 발생했습니다. 잠시 후 다시 시도해주세요.");
+  const data = await response.json().catch(() => {
+    throw new Error(ORDER_ERROR_MESSAGE.GET);
+  });
 
   return data;
 };
@@ -54,5 +55,10 @@ export const postOrder = async (serverId: ServerId, order: PostOrder) => {
     body: JSON.stringify(order),
   });
 
-  return response.ok;
+  if (!response.ok)
+    throw new Error(
+      response.status.toString()[0] === "5"
+        ? ORDER_ERROR_MESSAGE.POST.SERVER
+        : ORDER_ERROR_MESSAGE.POST.CLIENT
+    );
 };
