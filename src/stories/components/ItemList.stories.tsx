@@ -8,4 +8,4 @@ export default {
 
 const Template: StoryFn = () => <ItemList />;
 
-export const ListSample = Template.bind({});
+export const Default = Template.bind({});

@@ -1,9 +1,26 @@
 import { StoryFn, Meta } from "@storybook/react";
 import Item from "components/main/Item";
+import { styled } from "styled-components";
+
+const Wrapper = styled.div`
+  width: 400px;
+`;
 
 export default {
   title: "Item",
   component: Item,
+  decorators: [
+    (Story) => (
+      <Wrapper>
+        <Story />
+      </Wrapper>
+    ),
+  ],
+  argTypes: {
+    item: {
+      description: "상품 예시입니다.",
+    },
+  },
 } as Meta;
 
 const Template: StoryFn = () => {
@@ -18,4 +35,4 @@ const Template: StoryFn = () => {
   return <Item item={item} />;
 };
 
-export const ItemSample = Template.bind({});
+export const Default = Template.bind({});

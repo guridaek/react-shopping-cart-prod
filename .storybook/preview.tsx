@@ -52,6 +52,14 @@ const preview: Preview = {
           )
         ),
         rest.get("*/coupons", (req, res, ctx) => res(ctx.status(200), ctx.json(coupons))),
+        rest.post("*/cart-items", async (req, res, ctx) =>
+          res(ctx.delay(100), ctx.status(201), ctx.set("Location", `/cart-items/${Date.now()}`))
+        ),
+        rest.patch("*/cart-items/:cartItemId", async (req, res, ctx) => res(ctx.status(200))),
+        rest.delete("*/cart-items/:cartItemId", async (req, res, ctx) => res(ctx.status(204))),
+        rest.get("msw/orders", (req, res, ctx) =>
+          res(ctx.status(200), ctx.set("Content-Type", "application/json"), ctx.json([]))
+        ),
       ],
     },
   },
