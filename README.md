@@ -1,6 +1,10 @@
 # react-payments
 
-우아한테크코스 레벨2 장바구니 미션
+우아한테크코스 레벨2 장바구니 협업 미션
+
+## FE [가람](https://github.com/guridaek) & [수아](https://github.com/chsua)
+
+## BE [파워](https://github.com/thdwoqor) & [땡칠](https://github.com/0chil) & [오리](https://github.com/carsago)
 
 ## [배포 페이지](https://react-shopping-cart-prod-git-guridaek-guridaek.vercel.app/)
 
