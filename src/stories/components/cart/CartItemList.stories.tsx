@@ -2,7 +2,7 @@ import { StoryFn, Meta } from "@storybook/react";
 import CartItemList from "components/cart/CartItemList";
 
 export default {
-  title: "CartItemList",
+  title: "Cart/CartItemList",
   component: CartItemList,
 } as Meta;
 

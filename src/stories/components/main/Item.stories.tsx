@@ -7,7 +7,7 @@ const Wrapper = styled.div`
 `;
 
 export default {
-  title: "Item",
+  title: "Main/Item",
   component: Item,
   decorators: [
     (Story) => (

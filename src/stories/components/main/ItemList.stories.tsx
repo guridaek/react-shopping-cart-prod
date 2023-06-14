@@ -2,7 +2,7 @@ import { StoryFn, Meta } from "@storybook/react";
 import ItemList from "components/main/ItemList";
 
 export default {
-  title: "ItemList",
+  title: "Main/ItemList",
   component: ItemList,
 } as Meta;
 

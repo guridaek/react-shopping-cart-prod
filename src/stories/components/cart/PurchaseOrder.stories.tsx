@@ -2,7 +2,7 @@ import { StoryFn, Meta } from "@storybook/react";
 import PurchaseOrder from "components/cart/PurchaseOrder";
 
 export default {
-  title: "PurchaseOrder",
+  title: "Cart/PurchaseOrder",
   component: PurchaseOrder,
   tags: ["autodocs"],
 } as Meta;
@@ -10,4 +10,3 @@ export default {
 const Template: StoryFn = () => <PurchaseOrder />;
 
 export const Default = Template.bind({});
-
