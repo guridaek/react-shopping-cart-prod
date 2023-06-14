@@ -2,7 +2,7 @@ import { StoryFn, Meta } from "@storybook/react";
 import QuantityCounter from "components/QuantityCounter";
 
 export default {
-  title: "Counter",
+  title: "Common/Counter",
   component: QuantityCounter,
   tags: ["autodocs"],
   argTypes: {
