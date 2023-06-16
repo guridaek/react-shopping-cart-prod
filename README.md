@@ -8,6 +8,8 @@
 
 ## [배포 페이지](https://react-shopping-cart-prod-git-guridaek-guridaek.vercel.app/)
 
+## [스토리북](https://6463267aee5d3c7105342735-eywiyoadhj.chromatic.com)
+
 ## 패키지 설치
 
 ```
