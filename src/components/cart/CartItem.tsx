@@ -47,7 +47,13 @@ const CartItem = ({ item }: Props) => {
   return (
     <Wrapper>
       <input type="checkbox" value={item.id} checked={item.isChecked} onChange={handleCheckbox} />
-      <img src={item.product.imageUrl} alt={`${item.product.name} 상품 이미지`} />
+      <img
+        src={item.product.imageUrl}
+        alt=""
+        onError={(e) => {
+          e.currentTarget.src = process.env.PUBLIC_URL + "/assets/image-not-available.jpg";
+        }}
+      />
       <NameBox>{item.product.name}</NameBox>
       <ButtonBox onClick={confirmRemoveItem}>🗑️</ButtonBox>
       <PriceContainer>

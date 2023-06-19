@@ -9,7 +9,13 @@ interface Props {
 const OrderProduct = ({ order }: Props) => {
   return (
     <Wrapper>
-      <ImgBox src={order.product.imageUrl} alt={`${order.product.name} 상품 이미지`} />
+      <ImgBox
+        src={order.product.imageUrl}
+        alt=""
+        onError={(e) => {
+          e.currentTarget.src = process.env.PUBLIC_URL + "/assets/image-not-available.jpg";
+        }}
+      />
       <NameBox>{order.product.name}</NameBox>
       <PriceBox>{(order.product.price * order.quantity).toLocaleString()}원</PriceBox>
     </Wrapper>

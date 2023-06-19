@@ -31,7 +31,13 @@ const Item = ({ item }: Props) => {
   return (
     <Wrapper>
       <ImageBox>
-        <img src={item.imageUrl} alt={`${item.name} 상품 이미지`} />
+        <img
+          src={item.imageUrl}
+          alt=""
+          onError={(e) => {
+            e.currentTarget.src = process.env.PUBLIC_URL + "/assets/image-not-available.jpg";
+          }}
+        />
       </ImageBox>
       <NameBox>{item.name}</NameBox>
       <PriceBox>{item.price.toLocaleString()}원</PriceBox>
